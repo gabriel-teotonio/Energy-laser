@@ -12,12 +12,28 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <h1>inicio</h1>
-      }
+        element: <h1>Início</h1>
+      },
+      {
+        path:"agendamentos",
+        element: <h1>Agendamentos</h1>
+      },
+      {
+        path:"clientes",
+        element: <h1>Clientes</h1>
+      },
+      {
+        path:"profissionais",
+        element: <h1>Profissionais</h1>
+      },
+      {
+        path:"servicos",
+        element: <h1>Profissionais</h1>
+      },
     ]
   },
   {
-    path: "/Login",
+    path: "/login",
     element: <Login />,
   },
 ]);
