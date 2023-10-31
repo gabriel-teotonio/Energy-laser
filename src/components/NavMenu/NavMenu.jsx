@@ -1,3 +1,4 @@
+import { Link, useLocation } from "react-router-dom"
 import styled from "styled-components"
 
 const Container = styled.div`
@@ -20,24 +21,26 @@ const Ul = styled.ul`
 `
 
 const Li = styled.li`
-  border-radius: 4px;
   height: 40px;
-  display: flex;
-  padding: 0 10px;
-  align-items: center;
+`
 
-  &:first-child{
-    background: var(--bg-gradiente, linear-gradient(95deg, #F8104F 5.78%, #D02ED2 44.32%, #2177F8 92.31%));
-  }
-  a{
-    color: currentColor;
-    text-decoration: none;
-    width: 100%;
-  }
+const StyledLink = styled(Link)`
+  display: flex;
+  border-radius: 4px;
+  align-items: center;
+  padding: 0 10px;
+
+  width: 100%;
+  height: 100%;
+  color: currentColor;
+  text-decoration: none;
+  background: ${props => props.isActive ? "linear-gradient(95deg, #F8104F 5.78%, #D02ED2 44.32%, #2177F8 92.31%)": "none"};
 `
 
 
 export const NavMenu = () => {
+  const location = useLocation()
+
   return (
     <Container>
         <AreaLogo>
@@ -45,19 +48,19 @@ export const NavMenu = () => {
         </AreaLogo>
         <Ul>
           <Li>
-            <a href="#">Inicio</a>
+            <StyledLink isActive={location.pathname === "/"} to={"/"}>Início</StyledLink>
           </Li>
           <Li>
-            <a href="#">Agendamentos</a>
+            <StyledLink isActive={location.pathname === "/agendamentos"} to={"/agendamentos"}>Agendamentos</StyledLink>
           </Li>
           <Li>
-            <a href="#">Clientes</a>
+            <StyledLink isActive={location.pathname === "/clientes"} to={"/clientes"}>Clientes</StyledLink>
           </Li>
           <Li>
-            <a href="#">Profissionais</a>
+            <StyledLink isActive={location.pathname === "/profissionais"} to={"/profissionais"}>Profissionais</StyledLink>
           </Li>
           <Li>
-            <a href="#">Serviços</a>
+            <StyledLink isActive={location.pathname === "/servicos"} to={"/servicos"}>Serviços</StyledLink>
           </Li>
         </Ul>
     </Container>
