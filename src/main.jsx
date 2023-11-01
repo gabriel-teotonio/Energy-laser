@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Root } from './routes/root';
 import { Login } from './routes/Login/login';
 import { TabelaClientes } from './components/TabelaClientes/TabelaClientes';
+import { ListaCliente } from './routes/Clientes/ListaCliente';
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path:"clientes",
-        element: <TabelaClientes />
+        element: <ListaCliente />
       },
       {
         path:"profissionais",
