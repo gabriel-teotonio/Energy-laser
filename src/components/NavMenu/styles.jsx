@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import styled from "styled-components"
 
 export const Container = styled.div`
@@ -24,7 +24,7 @@ export const Li = styled.li`
   height: 40px;
 `
 
-export const StyledLink = styled(Link)`
+export const StyledLink = styled(NavLink)`
   display: flex;
   border-radius: 4px;
   align-items: center;
@@ -34,5 +34,7 @@ export const StyledLink = styled(Link)`
   height: 100%;
   color: currentColor;
   text-decoration: none;
-  background: ${props => props.isActive ? "linear-gradient(95deg, #F8104F 5.78%, #D02ED2 44.32%, #2177F8 92.31%)": "none"};
+  &.active{
+    background: linear-gradient(95deg, #F8104F 5.78%, #D02ED2 44.32%, #2177F8 92.31%);
+  }
 `
