@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { TabelaClientes } from "../../components/TabelaClientes/TabelaClientes"
+import { Link, Navigate } from "react-router-dom"
 
 export const Container = styled.div`
   display: flex;
@@ -13,16 +14,21 @@ export const NavBar = styled.div`
   h4{
     font-size: 1.5rem;
   }
-  button{
+`
+
+const BtnLink = styled(Link)`
     background-color: #F8104F;
     color: #fff;
     border: none;
     padding: 0px 10px;
+
     border-radius: 4px;
     height: 40px;
-    cursor: pointer;
     text-transform: uppercase;
-  }
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
 `
 
 export const ListaCliente = () => {
@@ -30,7 +36,7 @@ export const ListaCliente = () => {
     <Container>
       <NavBar>
         <h4>Lista de cliente</h4>
-        <button>Criar novo cliente</button>
+        <BtnLink role="button" type="button" to={"/criarCliente"}>Criar novo cliente</BtnLink>
       </NavBar>
       <TabelaClientes />
     </Container>
