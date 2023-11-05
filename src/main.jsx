@@ -4,6 +4,9 @@ import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Root } from './routes/root';
 import { Login } from './routes/Login/login';
+import { TabelaClientes } from './components/TabelaClientes/TabelaClientes';
+import { ListaCliente } from './routes/Clientes/ListaCliente';
+import { CriarCliente } from './routes/Clientes/CriarCliente';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +23,7 @@ const router = createBrowserRouter([
       },
       {
         path:"clientes",
-        element: <h1>Clientes</h1>
+        element: <ListaCliente />
       },
       {
         path:"profissionais",
@@ -29,6 +32,10 @@ const router = createBrowserRouter([
       {
         path:"servicos",
         element: <h1>Profissionais</h1>
+      },
+      {
+        path:"criarCliente",
+        element: <CriarCliente/>
       },
     ]
   },
