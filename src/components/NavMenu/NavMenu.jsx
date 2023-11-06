@@ -12,19 +12,19 @@ export const NavMenu = () => {
         </AreaLogo>
         <Ul>
           <Li>
-            <StyledLink isActive={location.pathname === "/"} to={"/"}>Início</StyledLink>
+            <StyledLink to={"/"}>Início</StyledLink>
           </Li>
           <Li>
-            <StyledLink isActive={location.pathname === "/agendamentos"} to={"/agendamentos"}>Agendamentos</StyledLink>
+            <StyledLink to={"/agendamentos"}>Agendamentos</StyledLink>
           </Li>
           <Li>
-            <StyledLink isActive={location.pathname === "/clientes"} to={"/clientes"}>Clientes</StyledLink>
+            <StyledLink to={"/clientes"}>Clientes</StyledLink>
           </Li>
           <Li>
-            <StyledLink isActive={location.pathname === "/profissionais"} to={"/profissionais"}>Profissionais</StyledLink>
+            <StyledLink to={"/profissionais"}>Profissionais</StyledLink>
           </Li>
           <Li>
-            <StyledLink isActive={location.pathname === "/servicos"} to={"/servicos"}>Serviços</StyledLink>
+            <StyledLink to={"/servicos"}>Serviços</StyledLink>
           </Li>
         </Ul>
     </Container>

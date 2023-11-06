@@ -1,15 +1,5 @@
+import { clientes } from "../../fakeDb";
 import { Acao, Cabecalho, CabecalhoCelula, Celula, Linha, Tabela } from "./styles";
-
-const contatos = [
-   { nome: 'João', telefone: '123-456-7890', cpf: '123.456.789-01' },
-   { nome: 'Maria', telefone: '987-654-3210', cpf: '987.654.321-09' },
-   { nome: 'João', telefone: '123-456-7890', cpf: '123.456.789-01' },
-   { nome: 'Maria', telefone: '987-654-3210', cpf: '987.654.321-09' },
-   { nome: 'João', telefone: '123-456-7890', cpf: '123.456.789-01' },
-   { nome: 'Maria', telefone: '987-654-3210', cpf: '987.654.321-09' },
-   { nome: 'João', telefone: '123-456-7890', cpf: '123.456.789-01' },
-   { nome: 'Maria', telefone: '987-654-3210', cpf: '987.654.321-09' },
- ];
 
 export const TabelaClientes = () => {
   return (
@@ -23,7 +13,7 @@ export const TabelaClientes = () => {
         </tr>
       </Cabecalho>
       <tbody>
-        {contatos.map((contato, index) => (
+        {clientes.map((contato, index) => (
           <Linha key={index}>
             <Celula>{contato.nome}</Celula>
             <Celula>{contato.telefone}</Celula>

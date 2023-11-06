@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import { Link, Outlet } from "react-router-dom"
 import { NavMenu } from "../components/NavMenu/NavMenu"
 import styled from "styled-components"
 
@@ -25,6 +25,10 @@ const Main = styled.div`
    width: 100%;
    min-height: calc(100vh - 60px);
 `
+const StyledLink = styled(Link)`
+   color: currentColor;
+   text-decoration: none;
+`
 
 export const Root = () => {
    return (
@@ -32,8 +36,8 @@ export const Root = () => {
          <NavMenu />
          <Content>
             <NavBar>
-               <h4>Inicio</h4>
-               <p>Login</p>
+               <h4>Olá, Bem-vindo!</h4>
+               <StyledLink to={"/login"}>Login</StyledLink>
             </NavBar>
             <Main>
                <Outlet />
