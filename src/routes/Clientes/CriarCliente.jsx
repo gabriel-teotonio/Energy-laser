@@ -68,7 +68,7 @@ export const CriarCliente = () => {
          <FieldBox>
             <label>Nome:</label>
             <input {...register("nome")} type="text" />
-            <ErrorMessage>{errors.name?.message}</ErrorMessage>
+            <ErrorMessage>{errors.nome?.message}</ErrorMessage>
          </FieldBox>
          <FieldBox>
             <label>telefone:</label>

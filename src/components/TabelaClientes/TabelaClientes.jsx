@@ -6,6 +6,7 @@ export const TabelaClientes = () => {
    <Tabela>
       <Cabecalho>
         <tr>
+          <CabecalhoCelula>ID</CabecalhoCelula>
           <CabecalhoCelula>Nome</CabecalhoCelula>
           <CabecalhoCelula>Telefone</CabecalhoCelula>
           <CabecalhoCelula>CPF</CabecalhoCelula>
@@ -15,6 +16,7 @@ export const TabelaClientes = () => {
       <tbody>
         {clientes.map((contato, index) => (
           <Linha key={index}>
+            <Celula>{index}</Celula>
             <Celula>{contato.nome}</Celula>
             <Celula>{contato.telefone}</Celula>
             <Celula>{contato.cpf}</Celula>
