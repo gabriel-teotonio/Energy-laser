@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { clientes } from "../../fakeDb";
 import { Acao, Cabecalho, CabecalhoCelula, Celula, Linha, Tabela } from "./styles";
 
 export const TabelaClientes = () => {
+  const navigate = useNavigate()
+
   return (
    <Tabela>
       <Cabecalho>
@@ -14,14 +17,14 @@ export const TabelaClientes = () => {
         </tr>
       </Cabecalho>
       <tbody>
-        {clientes.map((contato, index) => (
+        {clientes.map((cliente, index) => (
           <Linha key={index}>
-            <Celula>{index}</Celula>
-            <Celula>{contato.nome}</Celula>
-            <Celula>{contato.telefone}</Celula>
-            <Celula>{contato.cpf}</Celula>
+            <Celula>{cliente.id}</Celula>
+            <Celula>{cliente.nome}</Celula>
+            <Celula>{cliente.telefone}</Celula>
+            <Celula>{cliente.cpf}</Celula>
             <Acao>
-              <button>Editar</button>
+              <button onClick={() => navigate(`/editarCliente/${cliente.id}`)}>Editar</button>
               <button>Excluir</button>
             </Acao>
           </Linha>

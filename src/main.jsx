@@ -7,6 +7,7 @@ import { Login } from './routes/Login/login';
 import { TabelaClientes } from './components/TabelaClientes/TabelaClientes';
 import { ListaCliente } from './routes/Clientes/ListaCliente';
 import { CriarCliente } from './routes/Clientes/CriarCliente';
+import { EditarCliente } from './routes/Clientes/EditarCliente';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path:"criarCliente",
         element: <CriarCliente/>
+      },
+      {
+        path:"editarCliente/:id",
+        element: <EditarCliente />
       },
     ]
   },
