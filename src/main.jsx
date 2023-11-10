@@ -4,17 +4,21 @@ import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Root } from './routes/root';
 import { Login } from './routes/Login/login';
-import { TabelaClientes } from './components/TabelaClientes/TabelaClientes';
 import { ListaCliente } from './routes/Clientes/ListaCliente';
 import { CriarCliente } from './routes/Clientes/CriarCliente';
 import { EditarCliente } from './routes/Clientes/EditarCliente';
+import { AuthProvider } from './contexts/Auth/authProvider';
+import { RotaProtegida } from './contexts/Auth/requireAuth';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Root />,
+    element:
+    <RotaProtegida>
+      <Root />
+    </RotaProtegida>,
     children: [
       {
+        path: "/",
         index: true,
         element: <h1>Início</h1>
       },
@@ -52,6 +56,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <AuthProvider>
+      <RouterProvider router={router}/>
+    </AuthProvider>
   </React.StrictMode>,
 )
