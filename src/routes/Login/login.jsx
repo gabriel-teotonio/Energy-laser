@@ -5,7 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { ErrorMessage } from "../../components/FormCliente/FormCliente"
 import { useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
+import { Navigate, useNavigate } from "react-router-dom"
+import logo from "../../imgs/logo-energy-laser.png"
 
 const schema = yup.object({
    user: yup.string().required("Campo usuario é obrigatório! preencha"),
@@ -13,7 +14,7 @@ const schema = yup.object({
 })
 
 export const Login = () => {
-   const { signin } = useContext(AuthContext)
+   const { signin, isAutenticated } = useContext(AuthContext)
    const navigate = useNavigate()
 
    const {
@@ -29,11 +30,13 @@ export const Login = () => {
          navigate("/", {replace: true})
       }
    }
+   // se estiver autenticado é redirecionado p/ o app
+   if(isAutenticated) return <Navigate to="/"/>
 
   return (
     <Container>
       <header>
-         <img src="src\imgs\logo-energy-laser.png" alt="logo img" />
+         <img src={logo} alt="logo img" />
       </header>
          
          <Box>

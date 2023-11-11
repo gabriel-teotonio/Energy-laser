@@ -12,38 +12,38 @@ import { RotaProtegida } from './contexts/Auth/requireAuth';
 
 const router = createBrowserRouter([
   {
+    path: "/",
     element:
     <RotaProtegida>
       <Root />
     </RotaProtegida>,
     children: [
       {
-        path: "/",
         index: true,
         element: <h1>Início</h1>
       },
       {
-        path:"agendamentos",
+        path:"/agendamentos",
         element: <h1>Agendamentos</h1>
       },
       {
-        path:"clientes",
+        path:"/clientes",
         element: <ListaCliente />
       },
       {
-        path:"profissionais",
+        path:"/profissionais",
         element: <h1>Profissionais</h1>
       },
       {
-        path:"servicos",
+        path:"/servicos",
         element: <h1>Profissionais</h1>
       },
       {
-        path:"criarCliente",
+        path:"/criarCliente",
         element: <CriarCliente/>
       },
       {
-        path:"editarCliente/:id",
+        path:"/editarCliente/:id",
         element: <EditarCliente />
       },
     ]
