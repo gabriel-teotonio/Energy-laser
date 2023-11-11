@@ -9,6 +9,7 @@ import { CriarCliente } from './routes/Clientes/CriarCliente';
 import { EditarCliente } from './routes/Clientes/EditarCliente';
 import { AuthProvider } from './contexts/Auth/authProvider';
 import { RotaProtegida } from './contexts/Auth/requireAuth';
+import { Home } from './routes/Home/home';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <h1>Início</h1>
+        element: <Home />
       },
       {
         path:"/agendamentos",
