@@ -31,14 +31,14 @@ const router = createBrowserRouter([
         path:"/clientes",
         element: <ListaCliente />
       },
-      {
-        path:"/profissionais",
-        element: <h1>Profissionais</h1>
-      },
-      {
-        path:"/servicos",
-        element: <h1>Profissionais</h1>
-      },
+      // {
+      //   path:"/profissionais",
+      //   element: <h1>Profissionais</h1>
+      // },
+      // {
+      //   path:"/servicos",
+      //   element: <h1>Profissionais</h1>
+      // },
       {
         path:"/criarCliente",
         element: <CriarCliente/>

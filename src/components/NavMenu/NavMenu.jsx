@@ -20,12 +20,12 @@ export const NavMenu = () => {
           <Li>
             <StyledLink to={"/clientes"}>Clientes</StyledLink>
           </Li>
-          <Li>
+          {/* <Li>
             <StyledLink to={"/profissionais"}>Profissionais</StyledLink>
           </Li>
           <Li>
             <StyledLink to={"/servicos"}>Serviços</StyledLink>
-          </Li>
+          </Li> */}
         </Ul>
     </Container>
   )
