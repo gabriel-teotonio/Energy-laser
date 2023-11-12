@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import { ItemAgendamento } from "../../components/ItemAgendamento/ItemAgendamento"
 
 export const Container = styled.div`
    width: 500px;
@@ -55,20 +56,7 @@ export const DateToday = styled.span`
 export const ListaAgendamentos = styled.ul`
    
 `
-export const ItemAgendamento = styled.li`
-   list-style: none;
-   padding: 0.5rem;
-   border-radius: 4px;
-   border: 1px solid rgba(97, 106, 137, 0.41);
-`
-export const ItemTopo = styled.div`
-   display: flex;
-   justify-content: space-between;
 
-   span{
-      color:#4C10F8;
-   }
-`
 
 export const Home = () => {
   return (
@@ -76,7 +64,7 @@ export const Home = () => {
    <ContainerAtalho>
    <h4>Ações rápidas</h4>
    <ButtonsAction>
-      <BtnLink role="button" type="button">Novo cliente</BtnLink>
+      <BtnLink role="button" type="button" to={"/criarCliente"}>Novo cliente</BtnLink>
       <BtnLink role="button" type="button">Novo agendamento</BtnLink>
    </ButtonsAction>
    </ContainerAtalho>
@@ -86,14 +74,9 @@ export const Home = () => {
          <DateToday>12/11/2023</DateToday>
       </ResumoTopo>
       <ListaAgendamentos>
-         <ItemAgendamento>
-            <ItemTopo>
-               <p><strong>Pac: Luiza Andrade</strong></p>
-               <span>10:00h</span>
-            </ItemTopo>
-            <p><strong>proced</strong>: Depilação a laser</p>
-            <p><strong>Profissional</strong>: Wesley Felipe</p>
-         </ItemAgendamento>
+         <ItemAgendamento/>
+         <ItemAgendamento/>
+         <ItemAgendamento/>
       </ListaAgendamentos>
    </ResumoAgendamento>
    </Container>
