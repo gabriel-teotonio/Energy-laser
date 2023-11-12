@@ -1,6 +1,8 @@
-import { Link, Outlet } from "react-router-dom"
+import { Link, Navigate, Outlet, useNavigate } from "react-router-dom"
 import { NavMenu } from "../components/NavMenu/NavMenu"
 import styled from "styled-components"
+import { useContext } from "react"
+import { AuthContext } from "../contexts/Auth/authProvider"
 
 const Container = styled.div`
    display:flex ;
@@ -25,19 +27,29 @@ const Main = styled.div`
    width: 100%;
    min-height: calc(100vh - 60px);
 `
-const StyledLink = styled(Link)`
+const ButtonSecundary = styled.button`
+   background: none;
+   border: none;
    color: currentColor;
-   text-decoration: none;
+   font-size: 1rem;
+   cursor: pointer;
 `
 
 export const Root = () => {
+   const { signout } = useContext(AuthContext)
+   const navigate = useNavigate()
+   const handleLogout = () => {
+      signout()
+      navigate("/login")
+   }
+
    return (
       <Container>
          <NavMenu />
          <Content>
             <NavBar>
                <h4>Olá, Bem-vindo!</h4>
-               <StyledLink to={"/login"}>Login</StyledLink>
+               <ButtonSecundary onClick={handleLogout}>Sair</ButtonSecundary>
             </NavBar>
             <Main>
                <Outlet />
