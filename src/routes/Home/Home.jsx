@@ -65,7 +65,7 @@ export const Home = () => {
    <h4>Ações rápidas</h4>
    <ButtonsAction>
       <BtnLink role="button" type="button" to={"/criarCliente"}>Novo cliente</BtnLink>
-      <BtnLink role="button" type="button">Novo agendamento</BtnLink>
+      <BtnLink role="button" type="button" to={"/agendar"}>Novo agendamento</BtnLink>
    </ButtonsAction>
    </ContainerAtalho>
    <ResumoAgendamento>
