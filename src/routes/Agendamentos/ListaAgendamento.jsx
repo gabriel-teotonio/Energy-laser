@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { ItemAgendamento } from "../../components/ItemAgendamento/ItemAgendamento"
-import { BtnLink } from "../Home/home"
+import { BtnLink } from "../Home"
 
 export const Container = styled.div`
    max-width: 500px;

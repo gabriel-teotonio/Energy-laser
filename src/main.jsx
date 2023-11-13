@@ -9,19 +9,19 @@ import { CriarCliente } from './routes/Clientes/CriarCliente';
 import { EditarCliente } from './routes/Clientes/EditarCliente';
 import { AuthProvider } from './contexts/Auth/authProvider';
 import { RotaProtegida } from './contexts/Auth/requireAuth';
-import { Home } from './routes/Home/home';
+import { Home } from './routes/Home';
 import { ListaAgendamento } from './routes/Agendamentos/ListaAgendamento';
 import { Agendar } from './routes/Agendar/Agendar';
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element:
     <RotaProtegida>
       <Root />
     </RotaProtegida>,
     children: [
       {
+        path: "/",
         index: true,
         element: <Home />
       },
