@@ -9,36 +9,38 @@ import { CriarCliente } from './routes/Clientes/CriarCliente';
 import { EditarCliente } from './routes/Clientes/EditarCliente';
 import { AuthProvider } from './contexts/Auth/authProvider';
 import { RotaProtegida } from './contexts/Auth/requireAuth';
-import { Home } from './routes/Home/home';
+import { Home } from './routes/Home';
+import { ListaAgendamento } from './routes/Agendamentos/ListaAgendamento';
+import { Agendar } from './routes/Agendar/Agendar';
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element:
     <RotaProtegida>
       <Root />
     </RotaProtegida>,
     children: [
       {
+        path: "/",
         index: true,
         element: <Home />
       },
       {
         path:"/agendamentos",
-        element: <h1>Agendamentos</h1>
+        element: <ListaAgendamento />
       },
       {
         path:"/clientes",
         element: <ListaCliente />
       },
-      {
-        path:"/profissionais",
-        element: <h1>Profissionais</h1>
-      },
-      {
-        path:"/servicos",
-        element: <h1>Profissionais</h1>
-      },
+      // {
+      //   path:"/profissionais",
+      //   element: <h1>Profissionais</h1>
+      // },
+      // {
+      //   path:"/servicos",
+      //   element: <h1>Profissionais</h1>
+      // },
       {
         path:"/criarCliente",
         element: <CriarCliente/>
@@ -46,6 +48,10 @@ const router = createBrowserRouter([
       {
         path:"/editarCliente/:id",
         element: <EditarCliente />
+      },
+      {
+        path:"/agendar",
+        element: <Agendar />
       },
     ]
   },
