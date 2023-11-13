@@ -11,6 +11,7 @@ import { AuthProvider } from './contexts/Auth/authProvider';
 import { RotaProtegida } from './contexts/Auth/requireAuth';
 import { Home } from './routes/Home/home';
 import { ListaAgendamento } from './routes/Agendamentos/ListaAgendamento';
+import { Agendar } from './routes/Agendar/Agendar';
 
 const router = createBrowserRouter([
   {
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/agendar",
-        element: <h1>Agendar</h1>
+        element: <Agendar />
       },
     ]
   },
