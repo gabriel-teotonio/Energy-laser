@@ -42,7 +42,7 @@ export const ErrorMessage = styled.span`
 `
 
 const schema = yup.object({
-   cliente: yup.string().required("Este campo é obrigatório! preencha"),
+   cpf: yup.string().required("Este campo é obrigatório! preencha"),
    procedimento: yup.string().required("Este campo é obrigatório! preencha"),
    profissional: yup.string().required("Este campo é obrigatório! preencha"),
    dia: yup.string().required("Este campo é obrigatório! preencha"),
@@ -65,14 +65,9 @@ export const FormAgendamento = () => {
   return (
       <Form onSubmit={handleSubmit(onSubmit)}>
          <FieldBox>
-            <label>Escolha o cliente:</label>
-            <select {...register("cliente")}>
-               <option value="">Escolher</option>
-               <option value="Lucas">Lucas</option>
-               <option value="Felipe">Felipe</option>
-               
-            </select>
-            <ErrorMessage>{errors.cliente?.message}</ErrorMessage>
+            <label>Selecionar cliente pelo CPF:</label>
+            <input placeholder='000.000.000-00' {...register("cpf")} type="text" />
+            <ErrorMessage>{errors.cpf?.message}</ErrorMessage>
          </FieldBox>
          <FieldBox>
             <label>Qual procedimento realizado:</label>
