@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { FormCliente } from "../../components/FormCliente/FormCliente"
 import bgMobile from "../../imgs/bg-mobile.png"
 import Logo from "../../imgs/logo-energy-laser.png"
+import { BtnLink } from "../Home"
 
 export const Container = styled.div``
 export const BgContainer = styled.div`
@@ -21,6 +22,13 @@ export const BgContainer = styled.div`
   h3{
     font-weight: 500;
     margin-top: .5rem;
+  }
+  a{
+    background-color: transparent;
+    font-size: 14px;
+    border-bottom: 1px solid white;
+    border-radius: 0;
+    width: fit-content;
   }
   `
 export const Main = styled.main`
@@ -47,6 +55,8 @@ export const SignupCliente = () => {
       <BgContainer  $url={`${bgMobile}`}>
         <img src={Logo} alt="" />
         <h3>Bem-vindo, Faça seu cadastro.</h3>
+        <p>ou</p>
+        <BtnLink to={"/login"}>acessar minha conta</BtnLink>
       </BgContainer>
       <Main>
         <FormCliente onAction={formSubmit} btnTitle={"Realizar meu cadastro"}/>
