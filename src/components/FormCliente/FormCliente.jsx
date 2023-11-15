@@ -11,6 +11,7 @@ export const Form = styled.form`
    display: flex;
    flex-direction: column;
    width: 320px;
+   gap: 8px;
 
    button{
       margin-top: 1rem;
@@ -50,6 +51,11 @@ const schema = yup.object({
    telefone: yup.string().required("Este campo é obrigatório! preencha"),
    cpf: yup.string().required("Este campo é obrigatório! preencha"),
    genero: yup.string().required("Este campo é obrigatório! preencha"),
+   dataNascimento: yup.string().required("Este campo é obrigatório! preencha"),
+   bairro: yup.string().required("Este campo é obrigatório! preencha"),
+   cidade: yup.string().required("Este campo é obrigatório! preencha"),
+   estado: yup.string().required("Este campo é obrigatório! preencha"),
+   email: yup.string().required("Este campo é obrigatório! preencha"),
 })
 
 export const FormCliente = ({btnTitle, onAction}) => {
@@ -64,13 +70,14 @@ export const FormCliente = ({btnTitle, onAction}) => {
    
    useEffect(() => {
       const cliente = clientes.find(cliente => cliente.id === parseInt(id))
-      console.log(cliente)
-      if(id && cliente) reset({
-         nome: cliente.nome,
-         telefone: cliente.telefone,
-         cpf: cliente.cpf,
-         genero: cliente.genero,
-      })
+      if(id && cliente){
+         reset({
+            nome: cliente.nome,
+            telefone: cliente.telefone,
+            cpf: cliente.cpf,
+            genero: cliente.genero,
+         })
+      }
    },[])
 
   return (
@@ -99,6 +106,31 @@ export const FormCliente = ({btnTitle, onAction}) => {
             <option value="o">Outro</option>
          </select>
          <ErrorMessage>{errors.genero?.message}</ErrorMessage>
+      </FieldBox>
+      <FieldBox>
+         <label>Data de nascimento:</label>
+         <input {...register("dataNascimento")} type="text" />
+         <ErrorMessage>{errors.dataNascimento?.message}</ErrorMessage>
+      </FieldBox>
+      <FieldBox>
+         <label>Estado:</label>
+         <input {...register("estado")} type="text" />
+         <ErrorMessage>{errors.estado?.message}</ErrorMessage>
+      </FieldBox>
+      <FieldBox>
+         <label>Cidade:</label>
+         <input {...register("cidade")} type="text" />
+         <ErrorMessage>{errors.cidade?.message}</ErrorMessage>
+      </FieldBox>
+      <FieldBox>
+         <label>Bairro:</label>
+         <input {...register("bairro")} type="text" />
+         <ErrorMessage>{errors.bairro?.message}</ErrorMessage>
+      </FieldBox>
+      <FieldBox>
+         <label>Email:</label>
+         <input {...register("email")} type="text" />
+         <ErrorMessage>{errors.email?.message}</ErrorMessage>
       </FieldBox>
       <button type='submit'>{btnTitle}</button>
    </Form>

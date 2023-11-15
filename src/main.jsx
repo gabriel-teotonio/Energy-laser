@@ -12,6 +12,7 @@ import { RotaProtegida } from './contexts/Auth/requireAuth';
 import { Home } from './routes/Home';
 import { ListaAgendamento } from './routes/Agendamentos/ListaAgendamento';
 import { Agendar } from './routes/Agendar/Agendar';
+import { SignupCliente } from './routes/SignupCliente';
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/cadastro",
+    element: <SignupCliente />,
   },
 ]);
 
