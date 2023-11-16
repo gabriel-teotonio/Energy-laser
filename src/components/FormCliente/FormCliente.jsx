@@ -12,6 +12,7 @@ export const Form = styled.form`
    flex-direction: column;
    width: 320px;
    gap: 8px;
+   max-width: 520px;
 
    button{
       margin-top: 1rem;
@@ -46,7 +47,7 @@ export const ErrorMessage = styled.span`
 
 
 // validação de campos do form com yup
-const schema = yup.object({
+const schemaCliente = yup.object({
    nome: yup.string().required("Este campo é obrigatório! preencha"),
    telefone: yup.string().required("Este campo é obrigatório! preencha"),
    cpf: yup.string().required("Este campo é obrigatório! preencha"),
@@ -57,15 +58,27 @@ const schema = yup.object({
    estado: yup.string().required("Este campo é obrigatório! preencha"),
    email: yup.string().required("Este campo é obrigatório! preencha"),
 })
+const schemaClienteUser = yup.object({
+   nome: yup.string().required("Este campo é obrigatório! preencha"),
+   telefone: yup.string().required("Este campo é obrigatório! preencha"),
+   cpf: yup.string().required("Este campo é obrigatório! preencha"),
+   genero: yup.string().required("Este campo é obrigatório! preencha"),
+   dataNascimento: yup.string().required("Este campo é obrigatório! preencha"),
+   bairro: yup.string().required("Este campo é obrigatório! preencha"),
+   cidade: yup.string().required("Este campo é obrigatório! preencha"),
+   estado: yup.string().required("Este campo é obrigatório! preencha"),
+   email: yup.string().required("Este campo é obrigatório! preencha"),
+   senha: yup.string().required("Este campo é obrigatório! preencha"),
+})
 
-export const FormCliente = ({btnTitle, onAction}) => {
+export const FormCliente = ({btnTitle, onAction, isAdmin}) => {
    const {id} = useParams()
    const {
       register,
       handleSubmit,
       formState: {errors},
       reset
-   } = useForm({resolver: yupResolver(schema)})
+   } = useForm({resolver: yupResolver(isAdmin ? schemaCliente : schemaClienteUser)})
    
    
    useEffect(() => {
@@ -132,6 +145,13 @@ export const FormCliente = ({btnTitle, onAction}) => {
          <input {...register("email")} type="text" />
          <ErrorMessage>{errors.email?.message}</ErrorMessage>
       </FieldBox>
+      {!isAdmin && (
+      <FieldBox>
+         <label>Criar senha:</label>
+         <input {...register("senha")} type="password" />
+         <ErrorMessage>{errors.senha?.message}</ErrorMessage>
+      </FieldBox>
+      )}
       <button type='submit'>{btnTitle}</button>
    </Form>
   )

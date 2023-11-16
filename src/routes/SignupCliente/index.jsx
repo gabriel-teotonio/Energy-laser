@@ -4,7 +4,9 @@ import bgMobile from "../../imgs/bg-mobile.png"
 import Logo from "../../imgs/logo-energy-laser.png"
 import { BtnLink } from "../Home"
 
-export const Container = styled.div``
+export const Container = styled.div`
+   background: var(--bg-gradiente, linear-gradient(47deg, #F8104F 5.78%, #D02ED2 44.32%, #2177F8 92.31%));
+`
 export const BgContainer = styled.div`
   background-image: url(${(props) => props.$url});
   min-height: 240px;
@@ -59,7 +61,11 @@ export const SignupCliente = () => {
         <BtnLink to={"/login"}>acessar minha conta</BtnLink>
       </BgContainer>
       <Main>
-        <FormCliente onAction={formSubmit} btnTitle={"Realizar meu cadastro"}/>
+        <FormCliente 
+        onAction={formSubmit} 
+        btnTitle={"Realizar meu cadastro"}
+        isAdmin={false}
+        />
       </Main>
     </Container>
   )
