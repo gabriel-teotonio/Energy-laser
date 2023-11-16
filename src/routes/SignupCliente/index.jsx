@@ -3,6 +3,7 @@ import { FormCliente } from "../../components/FormCliente/FormCliente"
 import bgMobile from "../../imgs/bg-mobile.png"
 import Logo from "../../imgs/logo-energy-laser.png"
 import { BtnLink } from "../Home"
+import { clientes } from "../../fakeDb"
 
 export const Container = styled.div`
    background: var(--bg-gradiente, linear-gradient(47deg, #F8104F 5.78%, #D02ED2 44.32%, #2177F8 92.31%));
@@ -50,7 +51,8 @@ export const Main = styled.main`
 
 export const SignupCliente = () => {
   const formSubmit = (data) => {
-    console.log(data)
+    const { senha, ...clienteData } = data
+    clientes.push(clienteData)
   }
   return (
     <Container>
