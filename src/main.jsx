@@ -13,6 +13,7 @@ import { Home } from './routes/Home';
 import { ListaAgendamento } from './routes/Agendamentos/ListaAgendamento';
 import { Agendar } from './routes/Agendar/Agendar';
 import { SignupCliente } from './routes/SignupCliente';
+import { RootCliente } from './routes/ClienteUser/rootCliente';
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,23 @@ const router = createBrowserRouter([
   {
     path: "/cadastro",
     element: <SignupCliente />,
+  },
+  {
+
+    path: "/cliente",
+    element: <RootCliente />,
+    children: [
+      {
+        index: true,
+        path: "home",
+        element: <h2>Home</h2>
+      },
+      {
+        index: true,
+        path: "agendar",
+        element: <h2>agendar</h2>
+      },
+    ]
   },
 ]);
 
