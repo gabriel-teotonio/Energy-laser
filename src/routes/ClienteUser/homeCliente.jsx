@@ -17,6 +17,16 @@ export const ListAction = styled.div`
    display: flex;
    gap: .5rem;
 `
+export const RecentAgenda = styled.div``
+export const BoxRecent = styled.div`
+   background-color: white;
+   width: 220px;
+   padding: .8rem;
+   border-radius: 6px;
+   font-size: 14px;
+   margin-top: .2rem;
+   box-shadow: 1px 1px 4px #0000001b;
+`
 export const BoxAction = styled.div`
    display: flex;
    flex-direction: column;
@@ -51,6 +61,12 @@ export const HomeCliente = () => {
   return (
     <>
     <h2>Olá, Gabriel</h2>
+    <RecentAgenda>
+      <h4>Seus agendamentos</h4>
+      <BoxRecent>
+         <p>Você não tem agendamentos marcados</p>
+      </BoxRecent>
+    </RecentAgenda>
     <ContainerActions>
       <h2>Acesso rápido</h2>
       <ListAction>
