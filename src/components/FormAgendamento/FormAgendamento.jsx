@@ -2,17 +2,20 @@ import React from 'react'
 import styled from 'styled-components'
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import { useForm } from 'react-hook-form'
-
+import { Controller, useForm } from 'react-hook-form'
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css';
+import { useState } from "react";
 
 export const Form = styled.form`
    display: flex;
    gap: .5rem;
    flex-direction: column;
-   width: 320px;
-
-   button{
-      margin-top: 1rem;
+   width:100%;
+   max-width: 340px;
+`
+export const ButtonSubmit = styled.button`
+    margin-top: 1rem;
       height: 40px;
       border: none;
       cursor: pointer;
@@ -21,8 +24,8 @@ export const Form = styled.form`
       color: white;
       font-size: 16px;
       text-transform: uppercase;
-   }
 `
+
 export const FieldBox = styled.div`
    display: flex;
    flex-direction: column;
@@ -40,24 +43,51 @@ export const FieldBox = styled.div`
 export const ErrorMessage = styled.span`
    color: #ff3737;
 `
+export const CalendarioAgenda = styled(Calendar)`
+   border-radius: 6px;
+   .available{
+      background-color: #4242ff;
+      color: white;
+      transition: all .2s;
+      
+      &:hover{
+         transform: scale(1.1);
+         background-color: #0000a5;
+      }
+   }
+   .unavailable{
+      background-color: #b2b2b2;
+      pointer-events: none;
+   }
+`
+
 
 const schema = yup.object({
    cpf: yup.string().required("Este campo é obrigatório! preencha"),
    procedimento: yup.string().required("Este campo é obrigatório! preencha"),
    profissional: yup.string().required("Este campo é obrigatório! preencha"),
-   dia: yup.string().required("Este campo é obrigatório! preencha"),
+   selectedDate: yup.string().required("Este campo é obrigatório! preencha"),
    hora: yup.string().required("Este campo é obrigatório! preencha"),
 })
 
 export const FormAgendamento = () => {
+   const [availableDates, setAvailableDates] = useState([
+      new Date(2023, 10, 24),
+      new Date(2023, 10, 27),
+      new Date(2023, 10, 29),
+      new Date(2023, 11, 4),
+      new Date(2023, 11, 5),
+   ]);
    const {
       register,
       handleSubmit,
       formState: {errors},
       watch,
+      control,
       reset
    } = useForm({resolver: yupResolver(schema)})
 
+  
    const onSubmit = (data) => {
       console.log(data)
    }
@@ -89,22 +119,29 @@ export const FormAgendamento = () => {
          </FieldBox>
          {
             watch("profissional") && (
-               <FieldBox>
-                  <label>Dias disponíveis:</label>
-                  <select {...register("dia")}>
-                     <option value="">Escolher dia</option>
-                     <option value="14/11/2023">14/11 Terça-feira</option>
-                     <option value="15/11/2023">15/11 Quarta-feira</option>
-                     <option value="16/11/2023">16/11 Quinta-feira</option>
-                  </select>
-                  <ErrorMessage>{errors.dia?.message}</ErrorMessage>
-               </FieldBox>
+               <Controller
+               control={control}
+               name='selectedDate'
+               render={({field}) => (
+                  <CalendarioAgenda
+                  value={field.value}
+                  onChange={(date) => field.onChange(date)}
+                  tileClassName={({ date }) => {
+                     if(availableDates.find(d => d.getTime() === date.getTime())){
+                        return "available"
+                     }
+                     return 'unavailable'
+                  }}
+                  />
+               )}
+               />
             )
          }
+         <ErrorMessage>{errors.selectedDate?.message}</ErrorMessage>
          {
-            watch("dia") && (
+            watch("selectedDate") && (
                <FieldBox>
-                  <label>Horários disponíveis:</label>
+                  <label>Horários disponíveis para o dia <strong>{watch('selectedDate').getDate()}</strong></label>
                   <select {...register("hora")}>
                      <option value="">Escolher horário</option>
                      <option value="0830">08:30</option>
@@ -116,7 +153,7 @@ export const FormAgendamento = () => {
             )
          }
          
-         <button type='submit'>Agendar</button>
+         <ButtonSubmit type='submit'>Agendar</ButtonSubmit>
       </Form>
   )
 }
