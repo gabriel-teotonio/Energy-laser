@@ -15,6 +15,7 @@ import { Agendar } from './routes/Agendar/Agendar';
 import { SignupCliente } from './routes/SignupCliente';
 import { RootCliente } from './routes/ClienteUser/rootCliente';
 import { HomeCliente } from './routes/ClienteUser/homeCliente';
+import { Agendamento } from './routes/ClienteUser/agendamento';
 
 const router = createBrowserRouter([
   {
@@ -77,9 +78,8 @@ const router = createBrowserRouter([
         element: <HomeCliente />
       },
       {
-        index: true,
-        path: "agendar",
-        element: <h2>agendar</h2>
+        path: "agendamento",
+        element: <Agendamento />
       },
     ]
   },
