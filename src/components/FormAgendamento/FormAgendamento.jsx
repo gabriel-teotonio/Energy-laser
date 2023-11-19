@@ -6,6 +6,7 @@ import { Controller, useForm } from 'react-hook-form'
 import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css';
 import { useState } from "react";
+import { clientes } from '../../fakeDb'
 
 export const Form = styled.form`
    display: flex;
@@ -46,17 +47,26 @@ export const ErrorMessage = styled.span`
 export const CalendarioAgenda = styled(Calendar)`
    border-radius: 6px;
    .available{
-      background-color: #4242ff;
-      color: white;
+      background-color: #00eb9d;
+      color: #020F3D;
       transition: all .2s;
       
       &:hover{
-         transform: scale(1.1);
-         background-color: #0000a5;
+         background-color: #00df95;
       }
    }
+   .react-calendar__tile--active {
+      background: #184aff;
+      color: white;
+      transform: scale(1.2);
+      box-shadow: #00000022 1px 1px 4px 3px;
+   }
+   .react-calendar__tile--active:enabled:hover,
+   .react-calendar__tile--active:enabled:focus {
+      background: #184aff;
+   }
    .unavailable{
-      background-color: #b2b2b2;
+      background-color: #dedede;
       pointer-events: none;
    }
 `
@@ -86,10 +96,12 @@ export const FormAgendamento = () => {
       control,
       reset
    } = useForm({resolver: yupResolver(schema)})
+   const dateSelected = watch("selectedDate")
+   const searchedCpf = watch("cpf")
 
-  
    const onSubmit = (data) => {
       console.log(data)
+      alert("procedimento agendado com sucesso!")
    }
 
   return (
@@ -139,9 +151,10 @@ export const FormAgendamento = () => {
          }
          <ErrorMessage>{errors.selectedDate?.message}</ErrorMessage>
          {
-            watch("selectedDate") && (
+
+            dateSelected && (
                <FieldBox>
-                  <label>Horários disponíveis para o dia <strong>{watch('selectedDate').getDate()}</strong></label>
+                  <label>Horários disponíveis para o dia <strong>{dateSelected.getDate()}/{dateSelected.getMonth() + 1}</strong></label>
                   <select {...register("hora")}>
                      <option value="">Escolher horário</option>
                      <option value="0830">08:30</option>
