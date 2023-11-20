@@ -14,7 +14,7 @@ const schema = yup.object({
 })
 
 export const Login = () => {
-   const { signin, isAutenticated } = useContext(AuthContext)
+   const { signin, isAutenticated, user } = useContext(AuthContext)
    const navigate = useNavigate()
 
    const {
@@ -26,12 +26,24 @@ export const Login = () => {
    const onSubmit = async (data) => {
       const resAuth = await signin(data.user, data.password)
       console.log(resAuth)
-      if(resAuth){
-         navigate("/", {replace: true})
+      if(resAuth && user){
+         if(user.userType === "admin" || user.userType === "atendente"){
+            return <Navigate to="/"/>
+         }
+         else if(user.userType === "cliente"){
+            return <Navigate to="/cliente/home"/>
+         }
       }
    }
    // se estiver autenticado é redirecionado p/ o app
-   if(isAutenticated) return <Navigate to="/"/>
+   if(user){
+      if(user.userType === "admin" || user.userType === "atendente"){
+         return <Navigate to="/"/>
+      }
+      else if(user.userType === "cliente"){
+         return <Navigate to="/cliente/home"/>
+      }
+   }
 
   return (
     <Container>

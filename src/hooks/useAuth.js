@@ -3,7 +3,7 @@ export const useAuth = () => ({
    validateToken: async (token) => {
       if(token === "hAHSsdnKsjdf"){
          return {
-            user: {id:"3",name:"jose maria", email:"jose@gmail.com" }
+            user: {id:"3",name:"jose maria", email:"jose@gmail.com",user:"jose4532" , userType: "cliente" }
          };
       }
       // const response = await authApi.post("/validate", {token})
@@ -11,7 +11,7 @@ export const useAuth = () => ({
    },
    signin: async (user, password) => {
       return {
-         user: {id:"3",nome:"jose maria", user:"jose4532"},
+         user: {id:"3",nome:"jose maria", user:"jose4532", userType: "cliente"},
          token: "hAHSsdnKsjdf"
       }
       const response = await authApi.post("/signin", {email, password})
