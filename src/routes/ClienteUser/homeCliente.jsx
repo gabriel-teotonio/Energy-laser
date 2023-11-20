@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import IconAgenda from "../../imgs/icon-agenda.svg"
 import IconPaper from "../../imgs/icon-paper.svg"
+import { Link } from "react-router-dom"
 
 export const ContainerActions = styled.div`
    display: flex;
@@ -27,7 +28,7 @@ export const BoxRecent = styled.div`
    margin-top: .2rem;
    box-shadow: 1px 1px 4px #0000001b;
 `
-export const BoxAction = styled.div`
+export const BoxAction = styled(Link)`
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -37,7 +38,7 @@ export const BoxAction = styled.div`
    color: white;
    border-radius: 4px;
    background: linear-gradient(57deg, #4C10F8 10.32%, #3200bb 100%);
-
+   text-decoration: none;
 
 
    max-width: 140px;
@@ -70,7 +71,7 @@ export const HomeCliente = () => {
     <ContainerActions>
       <h2>Acesso rápido</h2>
       <ListAction>
-         <BoxAction>
+         <BoxAction to={"/cliente/agendamento"}>
             <img src={IconAgenda} alt="icone" />
             <h3>Agendar um procedimento</h3>
          </BoxAction>
