@@ -16,6 +16,7 @@ import { SignupCliente } from './routes/SignupCliente';
 import { RootCliente } from './routes/ClienteUser/rootCliente';
 import { HomeCliente } from './routes/ClienteUser/homeCliente';
 import { Agendamento } from './routes/ClienteUser/agendamento';
+import { Profissionais } from './routes/Profissionais';
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
       },
       {
         path:"/profissionais",
-        element:<RotaProtegidaAdm><h1>Profissionais</h1></RotaProtegidaAdm> 
+        element:<RotaProtegidaAdm><Profissionais /></RotaProtegidaAdm> 
       },
       {
         path:"/servicos",
