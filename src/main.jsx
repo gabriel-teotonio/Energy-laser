@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { ListaCliente } from './routes/Clientes/ListaCliente';
 import { CriarCliente } from './routes/Clientes/CriarCliente';
 import { EditarCliente } from './routes/Clientes/EditarCliente';
 import { AuthProvider } from './contexts/Auth/authProvider';
-import { RotaProtegida } from './contexts/Auth/requireAuth';
+import { RotaProtegida, RotaProtegidaAdm, RotaProtegidaCliente } from './contexts/Auth/requireAuth';
 import { Home } from './routes/Home';
 import { ListaAgendamento } from './routes/Agendamentos/ListaAgendamento';
 import { Agendar } from './routes/Agendar/Agendar';
@@ -37,14 +37,14 @@ const router = createBrowserRouter([
         path:"/clientes",
         element: <ListaCliente />
       },
-      // {
-      //   path:"/profissionais",
-      //   element: <h1>Profissionais</h1>
-      // },
-      // {
-      //   path:"/servicos",
-      //   element: <h1>Profissionais</h1>
-      // },
+      {
+        path:"/profissionais",
+        element:<RotaProtegidaAdm><h1>Profissionais</h1></RotaProtegidaAdm> 
+      },
+      {
+        path:"/servicos",
+        element: <RotaProtegidaAdm><h1>Serviços</h1></RotaProtegidaAdm>
+      },
       {
         path:"/criarCliente",
         element: <CriarCliente/>
@@ -70,7 +70,9 @@ const router = createBrowserRouter([
   {
 
     path: "/cliente",
-    element: <RootCliente />,
+    element:<RotaProtegidaCliente>
+              <RootCliente />
+            </RotaProtegidaCliente>,
     children: [
       {
         index: true,
