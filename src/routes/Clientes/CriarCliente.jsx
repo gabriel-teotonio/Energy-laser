@@ -11,8 +11,11 @@ export const CriarCliente = () => {
   return (
     <div>
       <h3>Criar novo cliente</h3>
-      
-     <FormCliente btnTitle={"Criar cliente"} onAction={onSubmit}/>
+     <FormCliente 
+     btnTitle={"Criar cliente"} 
+     onAction={onSubmit}
+     isAdmin={true}
+     />
     </div>
   )
 }

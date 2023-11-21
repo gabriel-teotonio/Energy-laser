@@ -2,17 +2,21 @@ import React from 'react'
 import styled from 'styled-components'
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
-import { useForm } from 'react-hook-form'
-
+import { Controller, useForm } from 'react-hook-form'
+import Calendar from 'react-calendar'
+import 'react-calendar/dist/Calendar.css';
+import { useState } from "react";
+import { clientes } from '../../fakeDb'
 
 export const Form = styled.form`
    display: flex;
    gap: .5rem;
    flex-direction: column;
-   width: 320px;
-
-   button{
-      margin-top: 1rem;
+   width:100%;
+   max-width: 340px;
+`
+export const ButtonSubmit = styled.button`
+    margin-top: 1rem;
       height: 40px;
       border: none;
       cursor: pointer;
@@ -21,8 +25,8 @@ export const Form = styled.form`
       color: white;
       font-size: 16px;
       text-transform: uppercase;
-   }
 `
+
 export const FieldBox = styled.div`
    display: flex;
    flex-direction: column;
@@ -40,39 +44,72 @@ export const FieldBox = styled.div`
 export const ErrorMessage = styled.span`
    color: #ff3737;
 `
+export const CalendarioAgenda = styled(Calendar)`
+   border-radius: 6px;
+   .available{
+      background-color: #00eb9d;
+      color: #020F3D;
+      transition: all .2s;
+      
+      &:hover{
+         background-color: #00df95;
+      }
+   }
+   .react-calendar__tile--active {
+      background: #184aff;
+      color: white;
+      transform: scale(1.2);
+      box-shadow: #00000022 1px 1px 4px 3px;
+   }
+   .react-calendar__tile--active:enabled:hover,
+   .react-calendar__tile--active:enabled:focus {
+      background: #184aff;
+   }
+   .unavailable{
+      background-color: #dedede;
+      pointer-events: none;
+   }
+`
+
 
 const schema = yup.object({
-   cliente: yup.string().required("Este campo é obrigatório! preencha"),
+   cpf: yup.string().required("Este campo é obrigatório! preencha"),
    procedimento: yup.string().required("Este campo é obrigatório! preencha"),
    profissional: yup.string().required("Este campo é obrigatório! preencha"),
-   dia: yup.string().required("Este campo é obrigatório! preencha"),
+   selectedDate: yup.string().required("Este campo é obrigatório! preencha"),
    hora: yup.string().required("Este campo é obrigatório! preencha"),
 })
 
 export const FormAgendamento = () => {
+   const [availableDates, setAvailableDates] = useState([
+      new Date(2023, 10, 24),
+      new Date(2023, 10, 27),
+      new Date(2023, 10, 29),
+      new Date(2023, 11, 4),
+      new Date(2023, 11, 5),
+   ]);
    const {
       register,
       handleSubmit,
       formState: {errors},
       watch,
+      control,
       reset
    } = useForm({resolver: yupResolver(schema)})
+   const dateSelected = watch("selectedDate")
+   const searchedCpf = watch("cpf")
 
    const onSubmit = (data) => {
       console.log(data)
+      alert("procedimento agendado com sucesso!")
    }
 
   return (
       <Form onSubmit={handleSubmit(onSubmit)}>
          <FieldBox>
-            <label>Escolha o cliente:</label>
-            <select {...register("cliente")}>
-               <option value="">Escolher</option>
-               <option value="Lucas">Lucas</option>
-               <option value="Felipe">Felipe</option>
-               
-            </select>
-            <ErrorMessage>{errors.cliente?.message}</ErrorMessage>
+            <label>Selecionar cliente pelo CPF:</label>
+            <input placeholder='000.000.000-00' {...register("cpf")} type="text" />
+            <ErrorMessage>{errors.cpf?.message}</ErrorMessage>
          </FieldBox>
          <FieldBox>
             <label>Qual procedimento realizado:</label>
@@ -94,22 +131,30 @@ export const FormAgendamento = () => {
          </FieldBox>
          {
             watch("profissional") && (
-               <FieldBox>
-                  <label>Dias disponíveis:</label>
-                  <select {...register("dia")}>
-                     <option value="">Escolher dia</option>
-                     <option value="14/11/2023">14/11 Terça-feira</option>
-                     <option value="15/11/2023">15/11 Quarta-feira</option>
-                     <option value="16/11/2023">16/11 Quinta-feira</option>
-                  </select>
-                  <ErrorMessage>{errors.dia?.message}</ErrorMessage>
-               </FieldBox>
+               <Controller
+               control={control}
+               name='selectedDate'
+               render={({field}) => (
+                  <CalendarioAgenda
+                  value={field.value}
+                  onChange={(date) => field.onChange(date)}
+                  tileClassName={({ date }) => {
+                     if(availableDates.find(d => d.getTime() === date.getTime())){
+                        return "available"
+                     }
+                     return 'unavailable'
+                  }}
+                  />
+               )}
+               />
             )
          }
+         <ErrorMessage>{errors.selectedDate?.message}</ErrorMessage>
          {
-            watch("dia") && (
+
+            dateSelected && (
                <FieldBox>
-                  <label>Horários disponíveis:</label>
+                  <label>Horários disponíveis para o dia <strong>{dateSelected.getDate()}/{dateSelected.getMonth() + 1}</strong></label>
                   <select {...register("hora")}>
                      <option value="">Escolher horário</option>
                      <option value="0830">08:30</option>
@@ -121,7 +166,7 @@ export const FormAgendamento = () => {
             )
          }
          
-         <button type='submit'>Agendar</button>
+         <ButtonSubmit type='submit'>Agendar</ButtonSubmit>
       </Form>
   )
 }
