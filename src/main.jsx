@@ -17,6 +17,8 @@ import { RootCliente } from './routes/ClienteUser/rootCliente';
 import { HomeCliente } from './routes/ClienteUser/homeCliente';
 import { Agendamento } from './routes/ClienteUser/agendamento';
 import { Profissionais } from './routes/Profissionais';
+import { CriarProfissional } from './routes/Profissionais/CriarProfissional';
+import { EditarProfissional } from './routes/Profissionais/EditarProfissional';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
       {
         path:"/servicos",
         element: <RotaProtegidaAdm><h1>Serviços</h1></RotaProtegidaAdm>
+      },
+      {
+        path:"/criarProfissional",
+        element: <CriarProfissional />
+      },
+      {
+        path:"/editarProfissional",
+        element: <EditarProfissional />
       },
       {
         path:"/criarCliente",
