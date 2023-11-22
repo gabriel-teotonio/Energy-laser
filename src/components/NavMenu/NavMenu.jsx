@@ -28,7 +28,7 @@ export const NavMenu = () => {
                   <StyledLink to={"/profissionais"}>Profissionais</StyledLink>
                 </Li>
                 <Li>
-                  <StyledLink to={"/servicos"}>Serviços</StyledLink>
+                  <StyledLink to={"/procedimentos"}>Procedimentos</StyledLink>
                 </Li>
               </>
             )
