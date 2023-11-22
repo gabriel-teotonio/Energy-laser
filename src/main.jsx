@@ -53,7 +53,7 @@ const router = createBrowserRouter([
         element: <CriarProfissional />
       },
       {
-        path:"/editarProfissional",
+        path:"/editarProfissional/:id",
         element: <EditarProfissional />
       },
       {
