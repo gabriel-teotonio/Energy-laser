@@ -19,6 +19,9 @@ import { Agendamento } from './routes/ClienteUser/agendamento';
 import { Profissionais } from './routes/Profissionais';
 import { CriarProfissional } from './routes/Profissionais/CriarProfissional';
 import { EditarProfissional } from './routes/Profissionais/EditarProfissional';
+import { Procedimento } from './routes/Procedimentos';
+import { CriarProced } from './routes/Procedimentos/CriarProced';
+import { EditPoced } from './routes/Procedimentos/EditarProced';
 
 const router = createBrowserRouter([
   {
@@ -45,8 +48,16 @@ const router = createBrowserRouter([
         element:<RotaProtegidaAdm><Profissionais /></RotaProtegidaAdm> 
       },
       {
-        path:"/servicos",
-        element: <RotaProtegidaAdm><h1>Serviços</h1></RotaProtegidaAdm>
+        path:"/procedimentos",
+        element: <RotaProtegidaAdm><Procedimento /></RotaProtegidaAdm>
+      },
+      {
+        path:"/criarProcedimento",
+        element: <CriarProced />
+      },
+      {
+        path:"/editarProcedimento/:id",
+        element: <EditPoced />
       },
       {
         path:"/criarProfissional",

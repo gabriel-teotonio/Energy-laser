@@ -8,3 +8,8 @@ export const profissionaisDb = [
    { id:2, nome: 'Maria celeste', telefone: '987-654-3210', cpf: '987.654.321-09', genero:'f'},
    { id:3, nome: 'Fernando', telefone: '123-456-7890', cpf: '123.456.789-01', genero:'m'},
  ];
+export const procedimetosDb = [
+   { id:1, nome: 'Depilação a laser', descricao: "descriçao do procedimento" },
+   { id:2, nome: 'Remoção de tatuagem', descricao: "descriçao do procedimento" },
+   { id:3, nome: 'Botox', descricao: "descriçao do procedimento" },
+ ];
